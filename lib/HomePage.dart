@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
       MaterialPageRoute(
         builder: (context) => StationListPage(
           isDeparture: isDeparture,
+          excludedStation: isDeparture ? arrival : departure,
         ),
       ),
     );

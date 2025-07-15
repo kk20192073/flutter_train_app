@@ -88,9 +88,9 @@ class _SeatPageState extends State<SeatPage> {
               itemBuilder: (context, index) {
                 if (index == 0) {
                   // ABCD 라벨
-                  return Row(
+                  return const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       SizedBox(
                           width: 50,
                           height: 24,
