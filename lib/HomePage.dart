@@ -3,7 +3,9 @@ import 'StationListPage.dart';
 import 'SeatPage.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final VoidCallback onToggleTheme;
+
+  const HomePage({super.key, required this.onToggleTheme});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -56,70 +58,80 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text("기차 예매"),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: const Color(0xffffff4f8),
-        foregroundColor: Colors.black,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: widget.onToggleTheme,
+          ),
+        ],
       ),
-      body: Padding(
+      body: Container(
+        color: isLight
+            ? Colors.grey[200]
+            : Theme.of(context).scaffoldBackgroundColor,
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildStationColumn(
-                      "출발역", departure, () => _selectStation(true)),
-                  Container(
-                    width: 2,
-                    height: 50,
-                    color: Colors.grey[400],
-                  ),
-                  _buildStationColumn(
-                      "도착역", arrival, () => _selectStation(false)),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  color: isLight ? Colors.white : Colors.grey[850],
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                onPressed: _goToSeatPage,
-                child: const Text(
-                  '좌석 선택',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildStationColumn(
+                        "출발역", departure, () => _selectStation(true), isLight),
+                    Container(
+                      width: 2,
+                      height: 50,
+                      color: isLight ? Colors.grey[400] : Colors.grey[700],
+                    ),
+                    _buildStationColumn(
+                        "도착역", arrival, () => _selectStation(false), isLight),
+                  ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onPressed: _goToSeatPage,
+                  child: const Text(
+                    '좌석 선택',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildStationColumn(String label, String? value, VoidCallback onTap) {
+  Widget _buildStationColumn(
+      String label, String? value, VoidCallback onTap, bool isLight) {
     final isSelected = value != null && value.isNotEmpty;
 
     return GestureDetector(
@@ -129,10 +141,10 @@ class _HomePageState extends State<HomePage> {
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Colors.grey,
+              color: isLight ? Colors.grey : Colors.grey[400],
             ),
           ),
           const SizedBox(height: 10),
@@ -140,7 +152,9 @@ class _HomePageState extends State<HomePage> {
             value ?? '선택',
             style: TextStyle(
               fontSize: 40,
-              color: isSelected ? Colors.black : Colors.grey,
+              color: isSelected
+                  ? (isLight ? Colors.black : Colors.white)
+                  : (isLight ? Colors.grey : Colors.grey[400]),
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
