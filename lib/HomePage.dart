@@ -64,6 +64,8 @@ class _HomePageState extends State<HomePage> {
         title: const Text("기차 예매"),
         centerTitle: true,
         elevation: 0,
+        backgroundColor:
+            isLight ? Colors.white : const Color.fromARGB(255, 7, 7, 7),
         actions: [
           IconButton(
             icon: const Icon(Icons.brightness_6),

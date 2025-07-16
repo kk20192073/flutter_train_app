@@ -33,9 +33,11 @@ class StationListPage extends StatelessWidget {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     return Scaffold(
-      backgroundColor: isLight ? Colors.white : Colors.grey[900],
+      backgroundColor:
+          isLight ? Colors.white : const Color.fromARGB(255, 7, 7, 7),
       appBar: AppBar(
-        backgroundColor: isLight ? Colors.white : Colors.grey[850],
+        backgroundColor:
+            isLight ? Colors.white : const Color.fromARGB(255, 7, 7, 7),
         foregroundColor: isLight ? Colors.black : Colors.white,
         elevation: 0,
         title: Text(isDeparture ? '출발역 선택' : '도착역 선택'),

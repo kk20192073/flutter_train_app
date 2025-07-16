@@ -22,10 +22,14 @@ class _SeatPageState extends State<SeatPage> {
   Widget build(BuildContext context) {
     final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: isLight ? const Color(0xFFFAF4FB) : Colors.grey[900],
+      backgroundColor: isLight
+          ? const Color(0xFFFAF4FB)
+          : const Color.fromARGB(255, 7, 7, 7),
       appBar: AppBar(
         title: const Text('좌석 선택'),
-        backgroundColor: isLight ? const Color(0xFFFAF4FB) : Colors.grey[850],
+        backgroundColor: isLight
+            ? const Color(0xFFFAF4FB)
+            : const Color.fromARGB(255, 7, 7, 7),
         foregroundColor: isLight ? Colors.black : Colors.white,
         centerTitle: true,
         elevation: 0,
