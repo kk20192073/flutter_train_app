@@ -31,7 +31,9 @@ class StationListPage extends StatelessWidget {
         : stations.where((station) => station != excludedStation).toList();
 
     return Scaffold(
+      backgroundColor: const Color(0xFFFAF4FB),
       appBar: AppBar(
+        backgroundColor: const Color(0xFFFAF4FB),
         title: Text(isDeparture ? '출발역 선택' : '도착역 선택'),
       ),
       body: ListView.builder(

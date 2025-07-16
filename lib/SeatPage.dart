@@ -21,13 +21,13 @@ class _SeatPageState extends State<SeatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xFFFFF4F8), // Use theme color
+      backgroundColor: const Color(0xFFFAF4FB),
       appBar: AppBar(
         title: const Text('좌석 선택'),
-        // backgroundColor: const Color(0xFFFFF4F8), // Use theme color
+        backgroundColor: const Color(0xFFFAF4FB),
+        foregroundColor: Colors.black,
         centerTitle: true,
         elevation: 0,
-        // foregroundColor: Colors.black, // Use theme color
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),

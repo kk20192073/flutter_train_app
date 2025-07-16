@@ -152,9 +152,7 @@ class _HomePageState extends State<HomePage> {
             value ?? '선택',
             style: TextStyle(
               fontSize: 40,
-              color: isSelected
-                  ? (isLight ? Colors.black : Colors.white)
-                  : (isLight ? Colors.grey : Colors.grey[400]),
+              color: isLight ? Colors.black : Colors.grey[300],
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
