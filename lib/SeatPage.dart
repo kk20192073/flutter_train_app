@@ -20,16 +20,18 @@ class _SeatPageState extends State<SeatPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF4FB),
+      backgroundColor: isLight ? const Color(0xFFFAF4FB) : Colors.grey[900],
       appBar: AppBar(
         title: const Text('좌석 선택'),
-        backgroundColor: const Color(0xFFFAF4FB),
-        foregroundColor: Colors.black,
+        backgroundColor: isLight ? const Color(0xFFFAF4FB) : Colors.grey[850],
+        foregroundColor: isLight ? Colors.black : Colors.white,
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,
+              color: isLight ? Colors.black : Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
       ),

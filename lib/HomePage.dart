@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: 200,
                 decoration: BoxDecoration(
-                  color: isLight ? Colors.white : Colors.grey[850],
+                  color: isLight ? Colors.white : Colors.grey[800],
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
